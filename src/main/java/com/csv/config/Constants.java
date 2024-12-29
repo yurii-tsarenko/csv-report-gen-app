@@ -6,6 +6,7 @@ public class Constants {
     public static final String LOG_ENCODING = "logger.encoding";
     public static final String LOG_FILE = "logger.file";
     public static final String LOG_LEVEL = "logger.level";
+    public static final String CSV_REPORT_FILE = "report.csv.file";
 
     // app constants - using for autoconfiguration
     public static final String CONFIG_FILE = "application.properties";

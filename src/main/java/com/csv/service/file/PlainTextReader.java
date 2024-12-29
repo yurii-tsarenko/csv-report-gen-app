@@ -1,4 +1,4 @@
-package com.csv.service;
+package com.csv.service.file;
 
 import java.io.InputStream;
 import java.util.Scanner;
