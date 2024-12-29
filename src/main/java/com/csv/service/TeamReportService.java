@@ -36,10 +36,11 @@ public class TeamReportService {
 
     public void generateReport(String inputFilePath) throws FileNotFoundException {
         File file = new File(inputFilePath);
+        String outputFileName = environment.getString(CSV_REPORT_FILE);
         List<IssueModel> issues = csvIssuesReader.read(new FileInputStream(file));
         List<ReportModel> reportList = teamStatsService.computeVelocity(issues);
         logger.info("Created {} records for reporting file", reportList.size());
-        csvReportWriter.write(reportList, environment.getString(CSV_REPORT_FILE));
-        logger.info("Report saved to file:{}", file.getName());
+        csvReportWriter.write(reportList, outputFileName);
+        logger.info("Report saved to file:{}", outputFileName);
     }
 }
