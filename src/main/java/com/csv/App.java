@@ -1,19 +1,16 @@
 package com.csv;
 
 import com.csv.config.ApplicationConfiguration;
-import com.csv.model.IssueModel;
-import com.csv.model.ReportModel;
-import com.csv.service.CSVReader;
-import com.csv.service.PlainTextReader;
-import com.csv.service.TeamStatsService;
+import com.csv.service.file.CSVIssuesReader;
+import com.csv.service.file.CsvReportWriter;
+import com.csv.service.file.PlainTextReader;
+import com.csv.service.TeamReportService;
+import com.csv.service.team.TeamStatsServiceImpl;
 import com.csv.util.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.List;
 
 import static com.csv.config.Constants.PROFILE_PROPERTY;
 
@@ -32,12 +29,9 @@ public class App {
         logger.info("Csv reporting app started under profile:{}, took: {} milliseconds", profile, (end - start));
 
         String filePath = resolveCsvFilePathArg(args);
-        File file = new File(filePath);
-        CSVReader csvReader = new CSVReader();
-        List<IssueModel> issues = csvReader.read(new FileInputStream(file));
-        TeamStatsService teamStatsService = new TeamStatsService();
-        List<ReportModel> reportList = teamStatsService.computeVelocity(issues);
-        logger.info("created {} records from reporting file", reportList.size());
+        TeamReportService teamReportService = new TeamReportService(environment, new CSVIssuesReader(),
+                new CsvReportWriter(), new TeamStatsServiceImpl());
+        teamReportService.generateReport(filePath);
     }
 
     private static String resolveCsvFilePathArg(String[] args) {

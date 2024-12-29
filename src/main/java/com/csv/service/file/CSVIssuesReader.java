@@ -1,4 +1,4 @@
-package com.csv.service;
+package com.csv.service.file;
 
 import com.csv.model.IssueModel;
 import com.fasterxml.jackson.databind.MappingIterator;
@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CSVReader implements FileReader<List<IssueModel>> {
+public class CSVIssuesReader implements FileReader<List<IssueModel>> {
 
-    private static final Logger logger = LoggerFactory.getLogger(CSVReader.class);
+    private static final Logger logger = LoggerFactory.getLogger(CSVIssuesReader.class);
 
     @Override
     public List<IssueModel> read(InputStream stream) {

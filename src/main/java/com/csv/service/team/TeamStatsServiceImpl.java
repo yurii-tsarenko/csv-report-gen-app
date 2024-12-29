@@ -1,4 +1,4 @@
-package com.csv.service;
+package com.csv.service.team;
 
 import com.csv.model.IssueModel;
 import com.csv.model.ReportModel;
@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class TeamStatsService {
-    private static final Logger logger = LoggerFactory.getLogger(TeamStatsService.class);
+public class TeamStatsServiceImpl implements TeamStatsService {
+    private static final Logger logger = LoggerFactory.getLogger(TeamStatsServiceImpl.class);
 
     public List<ReportModel> computeVelocity(List<IssueModel> issues) {
         logger.info("Starting to compute teams velocity report for issues");
