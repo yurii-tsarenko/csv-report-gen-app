@@ -2,8 +2,10 @@ package com.csv;
 
 import com.csv.config.ApplicationConfiguration;
 import com.csv.model.IssueModel;
+import com.csv.model.ReportModel;
 import com.csv.service.CSVReader;
 import com.csv.service.PlainTextReader;
+import com.csv.service.TeamStatsService;
 import com.csv.util.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +35,9 @@ public class App {
         File file = new File(filePath);
         CSVReader csvReader = new CSVReader();
         List<IssueModel> issues = csvReader.read(new FileInputStream(file));
-        logger.info("Read {} issues from CSV file", issues.size());
+        TeamStatsService teamStatsService = new TeamStatsService();
+        List<ReportModel> reportList = teamStatsService.computeVelocity(issues);
+        logger.info("created {} records from reporting file", reportList.size());
     }
 
     private static String resolveCsvFilePathArg(String[] args) {
