@@ -1,19 +1,21 @@
 package com.csv.service;
 
-import com.csv.TestSuite;
+import com.csv.TestProfile;
 import com.csv.model.IssueModel;
+import com.csv.service.file.CSVIssuesReader;
+import com.csv.service.file.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CSVReaderTest extends TestSuite {
+class CSVReaderTest extends TestProfile {
 
     @Test
     void shouldReadCSV() {
         final String testFileName = "/unit-test-data.csv";
-        FileReader<List<IssueModel>> reader = new CSVReader();
+        FileReader<List<IssueModel>> reader = new CSVIssuesReader();
 
         List<IssueModel> models = reader.read(CSVReaderTest.class.getResourceAsStream(testFileName));
 

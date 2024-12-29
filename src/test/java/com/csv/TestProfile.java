@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 import static com.csv.config.Constants.PROFILE_PROPERTY;
 
-public class TestSuite {
+public class TestProfile {
 
     @BeforeAll
     static void setup() {

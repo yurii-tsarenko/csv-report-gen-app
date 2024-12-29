@@ -1,6 +1,6 @@
 package com.csv.config;
 
-import com.csv.service.PlainTextReader;
+import com.csv.service.file.PlainTextReader;
 import com.csv.util.Environment;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.DailyRollingFileAppender;

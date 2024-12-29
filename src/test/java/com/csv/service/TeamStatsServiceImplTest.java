@@ -1,8 +1,10 @@
 package com.csv.service;
 
-import com.csv.TestSuite;
+import com.csv.TestProfile;
 import com.csv.model.IssueModel;
 import com.csv.model.ReportModel;
+import com.csv.service.file.CSVIssuesReader;
+import com.csv.service.team.TeamStatsServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
@@ -11,16 +13,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class TeamStatsServiceTest extends TestSuite {
+class TeamStatsServiceImplTest extends TestProfile {
 
     @Test
     void shouldComputeVelocityFromCSVData() {
-        TeamStatsService teamStatsService = new TeamStatsService();
+        TeamStatsServiceImpl teamStatsServiceImpl = new TeamStatsServiceImpl();
         InputStream inputStream = getClass().getResourceAsStream("/unit-test-data.csv");
-        CSVReader reader = new CSVReader();
+        CSVIssuesReader reader = new CSVIssuesReader();
         List<IssueModel> issues = reader.read(inputStream);
 
-        List<ReportModel> result = teamStatsService.computeVelocity(issues);
+        List<ReportModel> result = teamStatsServiceImpl.computeVelocity(issues);
 
         assertNotNull(result);
         assertEquals(3, result.size());
