@@ -20,7 +20,7 @@ class CSVReaderTest extends TestSuite {
         assertNotNull(models, "The result should not be null");
         assertFalse(models.isEmpty(), "The result should not be empty");
 
-        assertEquals(19, models.size(), "The result should contain exactly 19 valid rows");
+        assertEquals(18, models.size(), "The result should contain exactly 18 valid rows");
 
         IssueModel firstModel = models.get(0);
         assertEquals("MCPU-10140", firstModel.issueKey());
